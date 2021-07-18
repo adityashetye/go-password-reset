@@ -74,7 +74,7 @@ func changePassword(w http.ResponseWriter, r *http.Request) {
 				if err != nil {
 						log.Fatal(err)
 				}
-				fmt.Println("Updated %v Documents!", result.ModifiedCount)
+				fmt.Printf("Updated %v Documents!\n", result.ModifiedCount)
 				w.Write([]byte(`{"message": "Password updated against existing user"}`))
 		} else {
 				appUserLoginsResult, err := appUserLoginsCollection.InsertOne(ctx, bson.D{
@@ -85,7 +85,7 @@ func changePassword(w http.ResponseWriter, r *http.Request) {
 				if err != nil {
 						log.Fatal(err)
 				}
-				fmt.Println("New user created with %+v", appUserLoginsResult.InsertedID)
+				fmt.Printf("New user created with %+v\n", appUserLoginsResult.InsertedID)
 				w.Write([]byte(`{"message": "New user created with given password"}`))
 		}
 }
